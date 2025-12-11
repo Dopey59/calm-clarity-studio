@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Heart } from 'lucide-react';
+import { Heart, Cookie } from 'lucide-react';
 import { FooterNewsletter } from '@/components/common/FooterNewsletter';
+import { useCookieConsent } from '@/contexts/CookieConsentContext';
 
 const footerLinks = {
   navigation: [
@@ -20,6 +21,8 @@ const footerLinks = {
 };
 
 export function Footer() {
+  const { openPreferences } = useCookieConsent();
+
   return (
     <footer className="border-t border-border bg-card">
       <div className="container-content py-12">
@@ -92,6 +95,13 @@ export function Footer() {
                 {link.name}
               </Link>
             ))}
+            <button
+              onClick={openPreferences}
+              className="hover:text-foreground transition-colors inline-flex items-center gap-1"
+            >
+              <Cookie className="h-3.5 w-3.5" />
+              Gérer mes cookies
+            </button>
           </div>
           <p className="text-sm text-muted-foreground flex items-center gap-1">
             Fait avec <Heart className="h-3.5 w-3.5 text-primary fill-primary" /> pour votre bien-être

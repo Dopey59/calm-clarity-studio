@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Heart } from 'lucide-react';
+import { FooterNewsletter } from '@/components/common/FooterNewsletter';
 
 const footerLinks = {
   navigation: [
@@ -22,9 +23,9 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-card">
       <div className="container-content py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand */}
-          <div className="md:col-span-1">
+          <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/20">
                 <span className="text-base font-bold text-accent">C</span>
@@ -33,7 +34,7 @@ export function Footer() {
                 Calme<span className="text-primary">Clair</span>
               </span>
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               Votre ressource de confiance pour comprendre et gérer le stress et l'anxiété au quotidien.
             </p>
           </div>
@@ -72,29 +73,26 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Newsletter */}
           <div>
-            <h3 className="font-semibold mb-3 text-sm">Légal</h3>
-            <ul className="space-y-2">
-              {footerLinks.legal.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <FooterNewsletter />
           </div>
         </div>
 
         {/* Bottom */}
         <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} CalmeClair. Tous droits réservés.
-          </p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+            <p>© {new Date().getFullYear()} CalmeClair</p>
+            {footerLinks.legal.map((link) => (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="hover:text-foreground transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
           <p className="text-sm text-muted-foreground flex items-center gap-1">
             Fait avec <Heart className="h-3.5 w-3.5 text-primary fill-primary" /> pour votre bien-être
           </p>
